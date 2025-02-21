@@ -7,21 +7,22 @@ import 'package:country_list_pick/support/code_country.dart';
 import 'package:country_list_pick/support/code_countrys.dart';
 import 'package:flutter/material.dart';
 
-
 export 'support/code_country.dart';
 
 export 'country_selection_theme.dart';
 
 class CountryListPick extends StatefulWidget {
-  const CountryListPick(
-      {Key? key, this.onChanged,
-      this.initialSelection,
-      this.appBar,
-      this.pickerBuilder,
-      this.countryBuilder,
-      this.theme,
-      this.useUiOverlay = true,
-      this.useSafeArea = false}) : super(key: key);
+  const CountryListPick({
+    Key? key,
+    this.onChanged,
+    this.initialSelection,
+    this.appBar,
+    this.pickerBuilder,
+    this.countryBuilder,
+    this.theme,
+    this.useUiOverlay = true,
+    this.useSafeArea = false,
+  }) : super(key: key);
 
   final String? initialSelection;
   final ValueChanged<CountryCode?>? onChanged;
@@ -76,23 +77,23 @@ class _CountryListPickState extends State<CountryListPick> {
   void _awaitFromSelectScreen(BuildContext context, PreferredSizeWidget? appBar,
       CountryTheme? theme) async {
     final result = await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => SelectionList(
-            elements,
-            selectedItem,
-            appBar: widget.appBar ??
-                AppBar(
-                  backgroundColor:
-                      Theme.of(context).appBarTheme.backgroundColor,
-                  title: Text("Select Country"),
-                ),
-            theme: theme,
-            countryBuilder: widget.countryBuilder,
-            useUiOverlay: widget.useUiOverlay,
-            useSafeArea: widget.useSafeArea,
-          ),
-        ));
+      context,
+      MaterialPageRoute(
+        builder: (context) => SelectionList(
+          elements,
+          selectedItem,
+          appBar: widget.appBar ??
+              AppBar(
+                backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+                title: Text("Select Country"),
+              ),
+          theme: theme,
+          countryBuilder: widget.countryBuilder,
+          useUiOverlay: widget.useUiOverlay,
+          useSafeArea: widget.useSafeArea,
+        ),
+      ),
+    );
 
     setState(() {
       selectedItem = result ?? selectedItem;

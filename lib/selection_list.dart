@@ -96,11 +96,12 @@ class _SelectionListState extends State<SelectionList> {
                           child: Text(
                             widget.theme?.searchText ?? 'SEARCH',
                             style: TextStyle(
-                                color:
-                                    widget.theme?.labelColor ?? Colors.black),
+                              color: widget.theme?.labelColor ?? Colors.black,
+                            ),
                           ),
                         ),
                         Container(
+                          height: 50,
                           color: Colors.white,
                           child: TextField(
                             controller: _controller,
@@ -111,7 +112,11 @@ class _SelectionListState extends State<SelectionList> {
                               errorBorder: InputBorder.none,
                               disabledBorder: InputBorder.none,
                               contentPadding: EdgeInsets.only(
-                                  left: 15, bottom: 0, top: 0, right: 15),
+                                left: 15,
+                                bottom: 0,
+                                top: 0,
+                                right: 15,
+                              ),
                               hintText:
                                   widget.theme?.searchHintText ?? "Search...",
                             ),
@@ -123,8 +128,8 @@ class _SelectionListState extends State<SelectionList> {
                           child: Text(
                             widget.theme?.lastPickText ?? 'LAST PICK',
                             style: TextStyle(
-                                color:
-                                    widget.theme?.labelColor ?? Colors.black),
+                              color: widget.theme?.labelColor ?? Colors.black,
+                            ),
                           ),
                         ),
                         Container(
@@ -170,8 +175,10 @@ class _SelectionListState extends State<SelectionList> {
                       color: Colors.transparent,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [...List.generate(_alphabet.length,
-                                (index) => _getAlphabetItem(index))],
+                        children: [
+                          ...List.generate(_alphabet.length,
+                              (index) => _getAlphabetItem(index))
+                        ],
                       ),
                     ),
                   ),
