@@ -6,14 +6,21 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
+// import io.flutter.plugin.common.PluginRegistry.Registrar
 
 /** CountryListPickPlugin */
 public class CountryListPickPlugin: FlutterPlugin, MethodCallHandler {
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "country_list_pick")
-    channel.setMethodCallHandler(CountryListPickPlugin());
-  }
+  // override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+  //   val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "country_list_pick")
+  //   channel.setMethodCallHandler(CountryListPickPlugin());
+  // }
+
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+    //   this.setup(binding.getBinaryMessenger());
+        channel = new MethodChannel(binding.getBinaryMessenger(), "country_list_pick"); 
+        channel.setMethodCallHandler(this);
+    }
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
   // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
@@ -24,13 +31,13 @@ public class CountryListPickPlugin: FlutterPlugin, MethodCallHandler {
   // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
-  companion object {
-    @JvmStatic
-    fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "country_list_pick")
-      channel.setMethodCallHandler(CountryListPickPlugin())
-    }
-  }
+  // companion object {
+  //   @JvmStatic
+  //   fun registerWith(registrar: Registrar) {
+  //     val channel = MethodChannel(registrar.messenger(), "country_list_pick")
+  //     channel.setMethodCallHandler(CountryListPickPlugin())
+  //   }
+  // }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
